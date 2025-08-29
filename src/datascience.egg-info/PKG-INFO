@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: datascience
+Version: 0.0.1
+Summary: A small python package for MLOps app
+Home-page: https://github.com/pradeep70/MLOps-Titanic-Project
+Author: pradeep70
+Author-email: ch24m555@smail.iitm.ac.in
+Project-URL: Bug Tracker, https://github.com/pradeep70/MLOps-Titanic-Project/issues
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: description
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: project-url
+Dynamic: summary
+
+# MLOps-Titanic-Project
+Building a Robust MLOps Pipeline for Titanic Dataset

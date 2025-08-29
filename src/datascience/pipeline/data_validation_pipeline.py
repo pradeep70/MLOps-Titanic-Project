@@ -1,6 +1,6 @@
-from src.datascience.config.configuration import ConfigurationManager
-from src.datascience.components.data_validation import DataValiadtion
-from src.datascience import logger
+from datascience.config.configuration import ConfigurationManager
+from datascience.components.data_validation import DataValiadtion
+from datascience import logger
 
 STAGE_NAME = "Data Validation stage"
 

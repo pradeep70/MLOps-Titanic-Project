@@ -1,7 +1,7 @@
 import os
-from src.datascience import logger
+from datascience import logger
 from sklearn.model_selection import train_test_split
-from src.datascience.entity.config_entity import DataTransformationConfig
+from datascience.entity.config_entity import DataTransformationConfig
 import pandas as pd
 
 class DataTransformation:
@@ -24,6 +24,7 @@ class DataTransformation:
     ## Note: You can add different data transformation techniques such as Scaler, PCA and all
     
     def train_test_splitting(self):
+        logger.info("Reading the data for transformation")
         data=pd.read_csv(self.config.data_path)
         data = self.data_transformation(data)
 

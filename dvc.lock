@@ -1,0 +1,117 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/datascience/pipeline/data_ingestion_pipeline.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: a08e3e2c0e08b3325e7821078af47fb8
+      size: 997
+    - path: src/datascience/pipeline/data_ingestion_pipeline.py
+      hash: md5
+      md5: e3782f2a726bf315c3dfb3f799b4a1bc
+      size: 930
+    outs:
+    - path: artifacts/data_ingestion/
+      hash: md5
+      md5: c3325a619fcf7871ed1f8b00e3cbaf04.dir
+      size: 127958
+      nfiles: 4
+  validation:
+    cmd: python src/datascience/pipeline/data_validation_pipeline.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: a08e3e2c0e08b3325e7821078af47fb8
+      size: 997
+    - path: schema.yaml
+      hash: md5
+      md5: 8583f2f544ad6d78209a882d6829bb2c
+      size: 487
+    - path: src/datascience/pipeline/data_validation_pipeline.py
+      hash: md5
+      md5: 3ffa8d4610a919eb0007cdde2557a662
+      size: 911
+    outs:
+    - path: artifacts/data_validation
+      hash: md5
+      md5: 0ccb3ea5849272ff03be5ab71786b9ff.dir
+      size: 23
+      nfiles: 1
+  transformation:
+    cmd: python src/datascience/pipeline/data_transformation_pipeline.py
+    deps:
+    - path: artifacts/data_ingestion/
+      hash: md5
+      md5: c3325a619fcf7871ed1f8b00e3cbaf04.dir
+      size: 127958
+      nfiles: 4
+    - path: config/config.yaml
+      hash: md5
+      md5: a08e3e2c0e08b3325e7821078af47fb8
+      size: 997
+    - path: config/config.yaml
+      hash: md5
+      md5: a08e3e2c0e08b3325e7821078af47fb8
+      size: 997
+    - path: src/datascience/pipeline/data_transformation_pipeline.py
+      hash: md5
+      md5: 72a13321cece15702ad061bd2e13b57f
+      size: 1540
+    outs:
+    - path: artifacts/data_transformation/
+      hash: md5
+      md5: 72276665a99718f64771a5e6b290de5e.dir
+      size: 23835
+      nfiles: 2
+  training:
+    cmd: python src/datascience/pipeline/model_trainer_pipeline.py
+    deps:
+    - path: artifacts/data_transformation/
+      hash: md5
+      md5: 72276665a99718f64771a5e6b290de5e.dir
+      size: 23835
+      nfiles: 2
+    - path: config/config.yaml
+      hash: md5
+      md5: a08e3e2c0e08b3325e7821078af47fb8
+      size: 997
+    - path: config/config.yaml
+      hash: md5
+      md5: a08e3e2c0e08b3325e7821078af47fb8
+      size: 997
+    - path: src/datascience/pipeline/model_trainer_pipeline.py
+      hash: md5
+      md5: 09751ff7ff3481c315725c180686f0df
+      size: 892
+    outs:
+    - path: artifacts/model_trainer/
+      hash: md5
+      md5: 7c2d9e54dd12b7c309258850d759c4f1.dir
+      size: 1243
+      nfiles: 1
+  evaluation:
+    cmd: python src/datascience/pipeline/model_evaluation_pipeline.py
+    deps:
+    - path: artifacts/data_transformation/
+      hash: md5
+      md5: 72276665a99718f64771a5e6b290de5e.dir
+      size: 23835
+      nfiles: 2
+    - path: artifacts/model_trainer/model.joblib
+      hash: md5
+      md5: fb2f29dee249b6341eb21226f4b7b5dd
+      size: 1243
+    - path: config/config.yaml
+      hash: md5
+      md5: a08e3e2c0e08b3325e7821078af47fb8
+      size: 997
+    - path: src/datascience/pipeline/model_evaluation_pipeline.py
+      hash: md5
+      md5: c93f891283bd4434ea703d2469a6cbb0
+      size: 921
+    outs:
+    - path: artifacts/model_evaluation/metrics.json
+      hash: md5
+      md5: 2768e305cd8271d5cc5431721d05f006
+      size: 142

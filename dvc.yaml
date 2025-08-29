@@ -1,0 +1,51 @@
+stages:
+  data_ingestion:
+    cmd: python src/datascience/pipeline/data_ingestion_pipeline.py
+    deps:
+      - src/datascience/pipeline/data_ingestion_pipeline.py
+      - config/config.yaml
+    outs:
+      - artifacts/data_ingestion/
+
+
+  validation:
+    cmd: python src/datascience/pipeline/data_validation_pipeline.py
+    deps:
+      - src/datascience/pipeline/data_validation_pipeline.py
+      - config/config.yaml
+      - schema.yaml
+    outs:
+      - artifacts/data_validation
+
+
+  transformation:
+    cmd: python src/datascience/pipeline/data_transformation_pipeline.py
+    deps:
+      - src/datascience/pipeline/data_transformation_pipeline.py
+      - config/config.yaml
+      - artifacts/data_ingestion/
+      - config/config.yaml
+    outs:
+      - artifacts/data_transformation/
+
+
+  training:
+    cmd: python src/datascience/pipeline/model_trainer_pipeline.py
+    deps:
+      - src/datascience/pipeline/model_trainer_pipeline.py
+      - config/config.yaml
+      - artifacts/data_transformation/
+      - config/config.yaml
+    outs:
+      - artifacts/model_trainer/
+
+  evaluation:
+    cmd: python src/datascience/pipeline/model_evaluation_pipeline.py
+    deps:
+      - src/datascience/pipeline/model_evaluation_pipeline.py
+      - config/config.yaml
+      - artifacts/data_transformation/
+      - artifacts/model_trainer/model.joblib
+    metrics:
+    - artifacts/model_evaluation/metrics.json:
+        cache: false

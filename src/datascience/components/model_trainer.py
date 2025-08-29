@@ -1,10 +1,10 @@
 import pandas as pd
 import os
-from src.datascience import logger
+from datascience import logger
 from sklearn.linear_model import LogisticRegression
 import joblib
 
-from src.datascience.entity.config_entity import ModelTrainerConfig
+from datascience.entity.config_entity import ModelTrainerConfig
 
 
 class ModelTrainer:

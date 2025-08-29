@@ -7,9 +7,9 @@ import mlflow.sklearn
 import numpy as np
 import joblib
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-from src.datascience.entity.config_entity import ModelEvaluationConfig
-from src.datascience.constants import *
-from src.datascience.utils.common import read_yaml, create_directories,save_json
+from datascience.entity.config_entity import ModelEvaluationConfig
+from datascience.constants import *
+from datascience.utils.common import read_yaml, create_directories,save_json
 
 
 

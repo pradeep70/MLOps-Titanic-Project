@@ -1,12 +1,12 @@
-from src.datascience.constants import *
-from src.datascience.utils.common import read_yaml, create_directories
+from datascience.constants import *
+from datascience.utils.common import read_yaml, create_directories
 
-from src.datascience.entity.config_entity import (DataIngestionConfig,DataValidationConfig,
+from datascience.entity.config_entity import (DataIngestionConfig,DataValidationConfig,
                                                   DataTransformationConfig,ModelTrainerConfig,
                                                   ModelEvaluationConfig)
 
-import dagshub
-dagshub.init(repo_owner='pradeep70', repo_name='MLOps-Titanic-Project', mlflow=True)
+# import dagshub
+# dagshub.init(repo_owner='pradeep70', repo_name='MLOps-Titanic-Project', mlflow=True)
 
 class ConfigurationManager:
     def __init__(self,
